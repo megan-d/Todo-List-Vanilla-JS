@@ -13,6 +13,11 @@ header {
     color: purple;
 }
 
+.subtext {
+    font-size: 0.9rem;
+    color: purple;
+}
+
 ul {
     list-style: none;
     margin: 0 auto;
