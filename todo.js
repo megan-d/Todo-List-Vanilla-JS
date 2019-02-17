@@ -3,6 +3,7 @@ const addButton = document.querySelector('#add-btn');
 const input = document.querySelector('#input-todo');
 let lis = document.querySelectorAll('li');
 let ul = document.querySelector('ul');
+let deleteButton = document.querySelector('#clear-all');
 
 //create function to return input length
 function inputLength() {
@@ -17,8 +18,8 @@ function createListItem() {
     li.textContent = input.value;
     input.value = '';
     icon.classList.add("far", "fa-trash-alt");
-    spanElement.append(icon);
-    ul.appendChild(li).append(spanElement);
+    spanElement.appendChild(icon);
+    ul.appendChild(li).appendChild(spanElement);
     icon.onclick = deleteItem;
 }
 
@@ -43,12 +44,21 @@ function itemCompleted(event) {
     }
 }
 
-//create function to delete when trash can is clicked
+//delete item when trash can is clicked
 function deleteItem() {
-    console.log("deleted");
+    let parent = this.parentNode.parentNode.parentNode;
+    let child = this.parentNode.parentNode;
+    parent.removeChild(child);
 }
+
+//delete all items when clear all todos button is clicked
+function deleteAllItems() {
+    ul.innerHTML = '';
+};
+
 
 //set up event listeners for add and delete buttons
 addButton.addEventListener("click", addLiAfterClick);
 input.addEventListener("keypress", addLiAfterKeypress);
 ul.addEventListener('click', itemCompleted);
+deleteButton.addEventListener('click', deleteAllItems);
